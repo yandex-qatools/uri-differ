@@ -55,7 +55,7 @@ public class ViewCompareMatcher extends TypeSafeDiagnosingMatcher<URI> {
         UriDiff changes = diff().expected(expectedUri).actual(actualUri)
                 .filter(filters)
                 .changes();
-        String report = changes.report(new DefaultUrlDiffView());
+        String report = changes.report(DefaultUrlDiffView.withDefaultView());
 
         description.appendText(", but was:\n\t").appendValue(report);
         description.appendText("\n").appendValueList("filtered with: \n\t", "\n\t", "", filters);

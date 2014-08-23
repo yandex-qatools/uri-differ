@@ -23,7 +23,7 @@ public class UriDiffTest {
         String actual = "hotps://ya.ru";
         UriDiffer differ = UriDiffer.diff().actual(actual).expected(expected);
         UriDiff diff = differ.changes();
-        assertThat(differ.schemeDeltas().size(), equalTo(3));
+        assertThat(differ.schemeDeltas(), hasSize(3));
         assertThat(diff, changes(hasSize(1)));
         assertThat(diff, changes(hasItem(changeType(equalTo(SCHEME)))));
     }

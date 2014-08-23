@@ -1,5 +1,6 @@
 package ru.lanwen.diff.uri.core;
 
+import ru.lanwen.diff.uri.core.view.DefaultUrlDiffView;
 import ru.lanwen.diff.uri.core.view.ReportView;
 
 import java.net.URI;
@@ -52,5 +53,9 @@ public class UriDiff {
 
     public String report(ReportView view) {
         return view.report(this);
+    }
+
+    public String report() {
+        return this.report(DefaultUrlDiffView.withDefaultView());
     }
 }
