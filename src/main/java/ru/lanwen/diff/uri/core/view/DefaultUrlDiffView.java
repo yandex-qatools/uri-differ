@@ -13,6 +13,13 @@ import static ru.lanwen.diff.uri.core.converters.ChangeFormatter.formatChanges;
  */
 public class DefaultUrlDiffView implements ReportView {
 
+    private DefaultUrlDiffView() {
+    }
+
+    public static DefaultUrlDiffView withDefaultView() {
+        return new DefaultUrlDiffView();
+    }
+
     @Override
     public String report(UriDiff diff) {
         LambdaList<FormattedChange> changes = with(diff.getChanges()).convert(formatChanges());
