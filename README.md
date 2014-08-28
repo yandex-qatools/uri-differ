@@ -1,6 +1,10 @@
 URI Differ
 ===========
 
+[![release](http://github-release-version.herokuapp.com/github/lanwen/uri-differ/release.png?style=flat)](https://github.com/lanwen/uri-differ/releases/latest)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/ru.lanwen.diff/uri-differ-lib/badge.png?style=flat)](https://maven-badges.herokuapp.com/maven-central/ru.lanwen.diff/uri-differ-lib)
+
+
 Simple lib to find diffs between URI and represent it in pretty way.
 
 ##Quick start: 
@@ -10,7 +14,7 @@ Simple lib to find diffs between URI and represent it in pretty way.
 <dependency>
     <groupId>ru.lanwen.diff</groupId>
     <artifactId>uri-differ-lib</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 <dependency>
 ```  
 
