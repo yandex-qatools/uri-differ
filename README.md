@@ -1,7 +1,7 @@
 URI Differ
 ===========
 
-[![release](http://github-release-version.herokuapp.com/github/lanwen/uri-differ/release.png?style=flat)](https://github.com/lanwen/uri-differ/releases/latest)
+[![release](http://github-release-version.herokuapp.com/github/yandex-qatools/uri-differ/release.png?style=flat)](https://github.com/yandex-qatools/uri-differ/releases/latest)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/ru.lanwen.diff/uri-differ-lib/badge.png?style=flat)](https://maven-badges.herokuapp.com/maven-central/ru.lanwen.diff/uri-differ-lib)
 
 
