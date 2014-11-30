@@ -3,7 +3,6 @@ package ru.lanwen.diff.uri.core.util;
 import ch.lambdaj.collection.LambdaList;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -12,13 +11,18 @@ import java.util.Map;
 
 import static ch.lambdaj.collection.LambdaCollections.with;
 import static java.lang.String.valueOf;
-import static java.net.URLDecoder.decode;
 import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.defaultIfEmpty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.isIn;
 import static ru.lanwen.diff.uri.core.Delimeters.QUERY_NAME_VALUE_SEPARATOR;
-import static ru.lanwen.diff.uri.core.UriPart.*;
+import static ru.lanwen.diff.uri.core.UriPart.FRAGMENT;
+import static ru.lanwen.diff.uri.core.UriPart.HOST;
+import static ru.lanwen.diff.uri.core.UriPart.PATH;
+import static ru.lanwen.diff.uri.core.UriPart.PORT;
+import static ru.lanwen.diff.uri.core.UriPart.QUERY;
+import static ru.lanwen.diff.uri.core.UriPart.SCHEME;
+import static ru.lanwen.diff.uri.core.util.Decoder.decode;
 
 /**
  * User: lanwen
@@ -45,11 +49,7 @@ public class UriSplitter {
     public static List<String> splitQuery(URI uri) {
         List<String> queries = splitBy(QUERY.getSplitter(), uri.getRawQuery());
         for (int i = 0; i < queries.size(); i++) {
-            try {
-                queries.set(i, decode(queries.get(i), "UTF-8"));
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
+            queries.set(i, decode(queries.get(i)));
         }
         sort(queries);
         return queries;
