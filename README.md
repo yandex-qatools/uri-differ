@@ -58,7 +58,7 @@ What it returns:
 ```java
 UriDiffer.diff()
     .expected("http://ya.ru").actual("https://yandex.ru/?ncrnd=2342")
-    .filters(scheme(), param("ncrnd")).changes();
+    .filter(scheme(), param("ncrnd")).changes();
 ```
 
 ### Scheme filter:
