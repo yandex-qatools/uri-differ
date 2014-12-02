@@ -22,6 +22,7 @@ import static ru.lanwen.diff.uri.core.UriPart.PATH;
 import static ru.lanwen.diff.uri.core.UriPart.PORT;
 import static ru.lanwen.diff.uri.core.UriPart.QUERY;
 import static ru.lanwen.diff.uri.core.UriPart.SCHEME;
+import static ru.lanwen.diff.uri.core.util.Decoder.decode;
 
 /**
  * User: lanwen
@@ -46,7 +47,10 @@ public class UriSplitter {
     }
 
     public static List<String> splitQuery(URI uri) {
-        List<String> queries = splitBy(QUERY.getSplitter(), uri.getQuery());
+        List<String> queries = splitBy(QUERY.getSplitter(), uri.getRawQuery());
+        for (int i = 0; i < queries.size(); i++) {
+            queries.set(i, decode(queries.get(i)));
+        }
         sort(queries);
         return queries;
     }
