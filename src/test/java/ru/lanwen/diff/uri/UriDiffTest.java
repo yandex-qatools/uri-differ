@@ -3,6 +3,8 @@ package ru.lanwen.diff.uri;
 import org.junit.Test;
 import ru.lanwen.diff.uri.core.UriDiff;
 
+import java.net.URI;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static ru.lanwen.diff.uri.core.UriPart.*;
@@ -18,12 +20,26 @@ public class UriDiffTest {
     public static final String URL_EXP = "http://disk.yandex.com.tr/?auth=1&retpath=http%3A%2F%2Fmail.yandex.com.tr%2Fneo2%2F%23disk&auth=2";
 
     @Test
+    public void construction() throws Exception {
+        String uri = "http://ya.ru";
+        UriDiffer differ = UriDiffer.diff().actual(uri).expected(uri);
+        UriDiff diff = differ.changes();
+
+        assertThat(diff.getChanges(), empty());
+        assertThat(diff.getOriginal(), equalTo(URI.create(uri)));
+        assertThat(diff.getRevised(), equalTo(URI.create(uri)));
+        assertThat(diff.toString(), not(isEmptyOrNullString()));
+        assertThat(diff.report(), not(isEmptyOrNullString()));
+    }
+
+    @Test
     public void schemeChange() throws Exception {
         String expected = "httpf://ya.ru";
         String actual = "hotps://ya.ru";
         UriDiffer differ = UriDiffer.diff().actual(actual).expected(expected);
         UriDiff diff = differ.changes();
         assertThat(differ.schemeDeltas(), hasSize(3));
+        assertThat(diff.hasChanges(), equalTo(Boolean.TRUE));
         assertThat(diff, changes(hasSize(1)));
         assertThat(diff, changes(hasItem(changeType(equalTo(SCHEME)))));
     }
@@ -37,6 +53,7 @@ public class UriDiffTest {
         UriDiffer differ = UriDiffer.diff().actual(actual).expected(expected);
         UriDiff diff = differ.changes();
         assertThat(differ.hostDeltas().size(), equalTo(1));
+        assertThat(diff.hasChanges(), equalTo(Boolean.TRUE));
         assertThat(diff, changes(hasSize(1)));
         assertThat(diff, changes(hasItem(changeType(equalTo(HOST)))));
     }
@@ -50,6 +67,7 @@ public class UriDiffTest {
         UriDiff diff = differ.changes();
 
         assertThat(differ.pathDeltas().size(), equalTo(1));
+        assertThat(diff.hasChanges(), equalTo(Boolean.TRUE));
         assertThat(diff, changes(hasSize(1)));
         assertThat(diff, changes(hasItem(changeType(equalTo(PATH)))));
     }
@@ -63,6 +81,7 @@ public class UriDiffTest {
         UriDiff diff = differ.changes();
 
         assertThat(differ.portDeltas().size(), equalTo(1));
+        assertThat(diff.hasChanges(), equalTo(Boolean.TRUE));
         assertThat(diff, changes(hasSize(1)));
         assertThat(diff, changes(hasItem(changeType(equalTo(PORT)))));
     }
@@ -76,6 +95,7 @@ public class UriDiffTest {
         UriDiff diff = differ.changes();
 
         assertThat(differ.queryDeltas().size(), equalTo(1));
+        assertThat(diff.hasChanges(), equalTo(Boolean.TRUE));
         assertThat(diff, changes(hasSize(1)));
         assertThat(diff, changes(hasItem(changeType(equalTo(QUERY)))));
     }
@@ -87,6 +107,7 @@ public class UriDiffTest {
         UriDiff diff = differ.changes();
 
         assertThat(differ.queryDeltas().size(), equalTo(2));
+        assertThat(diff.hasChanges(), equalTo(Boolean.TRUE));
         assertThat(diff, changes(hasSize(1)));
         assertThat(diff, changes(hasItem(changeType(equalTo(QUERY)))));
     }
@@ -100,6 +121,7 @@ public class UriDiffTest {
         UriDiff diff = differ.changes();
 
         assertThat(differ.fragmentDeltas().size(), equalTo(1));
+        assertThat(diff.hasChanges(), equalTo(Boolean.TRUE));
         assertThat(diff, changes(hasSize(1)));
         assertThat(diff, changes(hasItem(changeType(equalTo(FRAGMENT)))));
     }
