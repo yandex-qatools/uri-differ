@@ -15,7 +15,7 @@ import static java.util.Collections.sort;
 import static org.apache.commons.lang3.StringUtils.defaultIfEmpty;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.isIn;
-import static ru.lanwen.diff.uri.core.Delimeters.QUERY_NAME_VALUE_SEPARATOR;
+import static ru.lanwen.diff.uri.core.Delimiters.QUERY_NAME_VALUE_SEPARATOR;
 import static ru.lanwen.diff.uri.core.UriPart.FRAGMENT;
 import static ru.lanwen.diff.uri.core.UriPart.HOST;
 import static ru.lanwen.diff.uri.core.UriPart.PATH;
