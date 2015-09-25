@@ -10,15 +10,15 @@ import static jersey.repackaged.com.google.common.base.Joiner.on;
  * User: lanwen
  */
 public class DeltaFormatter implements Converter<Delta, FormattedDelta> {
-    public static DeltaFormatter formatDeltas(String delimeter) {
-        return new DeltaFormatter(delimeter);
+    public static DeltaFormatter formatDeltas(String delimiter) {
+        return new DeltaFormatter(delimiter);
     }
 
-    private DeltaFormatter(String delimeter) {
-        this.delimeter = delimeter;
+    private DeltaFormatter(String delimiter) {
+        this.delimiter = delimiter;
     }
 
-    private String delimeter = "";
+    private String delimiter = "";
 
     public static final String DELETE_PATTERN = "[-%s]";
     public static final String INSERT_PATTERN = "[+%s]";
@@ -26,8 +26,8 @@ public class DeltaFormatter implements Converter<Delta, FormattedDelta> {
 
     @Override
     public FormattedDelta convert(Delta from) {
-        String original = on(delimeter).join(from.getOriginal().getLines());
-        String revised = on(delimeter).join(from.getRevised().getLines());
+        String original = on(delimiter).join(from.getOriginal().getLines());
+        String revised = on(delimiter).join(from.getRevised().getLines());
 
 
         return new FormattedDelta(

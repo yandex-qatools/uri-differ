@@ -40,8 +40,6 @@ public class ChangeFormatter implements Converter<Change, FormattedChange> {
     }
 
     private List<String> apply(FormattedDelta delta, List<String> splitted) {
-//        System.out.println(delta);
-//        System.out.println(splitted);
         if (splitted.size() > delta.getPosition() + inserted) {
             oper(delta, splitted);
         } else {

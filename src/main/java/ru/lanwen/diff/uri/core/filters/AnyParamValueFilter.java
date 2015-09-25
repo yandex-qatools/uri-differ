@@ -12,7 +12,7 @@ import java.util.Map;
 import static java.lang.String.format;
 import static java.util.Arrays.asList;
 import static jersey.repackaged.com.google.common.base.Joiner.on;
-import static ru.lanwen.diff.uri.core.Delimeters.QUERY_NAME_VALUE_SEPARATOR;
+import static ru.lanwen.diff.uri.core.Delimiters.QUERY_NAME_VALUE_SEPARATOR;
 
 /**
  * User: lanwen

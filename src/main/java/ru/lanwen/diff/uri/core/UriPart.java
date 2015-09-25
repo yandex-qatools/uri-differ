@@ -1,12 +1,12 @@
 package ru.lanwen.diff.uri.core;
 
 import static java.lang.String.format;
-import static ru.lanwen.diff.uri.core.Delimeters.BY_CHAR_SPLITTER;
-import static ru.lanwen.diff.uri.core.Delimeters.HOST_JOINER;
-import static ru.lanwen.diff.uri.core.Delimeters.HOST_SPLITTER;
-import static ru.lanwen.diff.uri.core.Delimeters.PATH_SPLITTER;
-import static ru.lanwen.diff.uri.core.Delimeters.QUERY_SPLITTER;
-import static ru.lanwen.diff.uri.core.Delimeters.WITH_DELIMITER;
+import static ru.lanwen.diff.uri.core.Delimiters.BY_CHAR_SPLITTER;
+import static ru.lanwen.diff.uri.core.Delimiters.HOST_JOINER;
+import static ru.lanwen.diff.uri.core.Delimiters.HOST_SPLITTER;
+import static ru.lanwen.diff.uri.core.Delimiters.PATH_SPLITTER;
+import static ru.lanwen.diff.uri.core.Delimiters.QUERY_SPLITTER;
+import static ru.lanwen.diff.uri.core.Delimiters.WITH_DELIMITER;
 
 /**
  * User: lanwen
