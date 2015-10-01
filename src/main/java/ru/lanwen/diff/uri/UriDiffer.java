@@ -2,12 +2,13 @@ package ru.lanwen.diff.uri;
 
 import difflib.Delta;
 import difflib.DiffUtils;
+import org.apache.commons.lang3.Validate;
 import ru.lanwen.diff.uri.core.Change;
 import ru.lanwen.diff.uri.core.UriDiff;
 import ru.lanwen.diff.uri.core.filters.UriDiffFilter;
 
 import java.net.URI;
-import java.net.URISyntaxException;
+import java.util.Collection;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -28,22 +29,25 @@ import static ru.lanwen.diff.uri.core.util.UriSplitter.splitScheme;
  * User: lanwen
  */
 public class UriDiffer {
+
     //TODO filter
     //TODO encoding
 
-    private URI actual = URI.create("/");
-    private URI expected = URI.create("/");
+    /*package*/ static final URI DEFAULT_URI = URI.create("/");
+
+    private URI actual = DEFAULT_URI;
+    private URI expected = DEFAULT_URI;
 
     public static UriDiffer diff() {
         return new UriDiffer();
     }
 
-    public UriDiffer actual(String actual) throws URISyntaxException {
-        return actual(new URI(actual));
+    public UriDiffer actual(String actual) {
+        return actual(URI.create(actual));
     }
 
-    public UriDiffer expected(String expected) throws URISyntaxException {
-        return expected(new URI(expected));
+    public UriDiffer expected(String expected) {
+        return expected(URI.create(expected));
     }
 
     public UriDiffer actual(URI actual) {
@@ -57,7 +61,8 @@ public class UriDiffer {
     }
 
 
-    public UriDiffer filter(List<UriDiffFilter> filters) {
+    public UriDiffer filter(Collection<UriDiffFilter> filters) {
+        Validate.notNull(filters, "Collection with filters must be defined");
         for (UriDiffFilter filter : filters) {
             expected(filter.apply(expected));
             actual(filter.apply(actual));
@@ -66,6 +71,7 @@ public class UriDiffer {
     }
 
     public UriDiffer filter(UriDiffFilter... filters) {
+        Validate.notNull(filters, "Filter(s) must be defined");
         return filter(asList(filters));
     }
 
@@ -80,29 +86,33 @@ public class UriDiffer {
     }
 
     public List<Delta> schemeDeltas() {
-        return (List) DiffUtils.diff(splitScheme(expected), splitScheme(actual)).getDeltas();
+        return diffDeltas(splitScheme(expected), splitScheme(actual));
     }
 
     public List<Delta> hostDeltas() {
-        return (List) DiffUtils.diff(splitHost(expected), splitHost(actual)).getDeltas();
+        return diffDeltas(splitHost(expected), splitHost(actual));
     }
 
     public List<Delta> portDeltas() {
-        return (List) DiffUtils.diff(splitPort(expected), splitPort(actual)).getDeltas();
+        return diffDeltas(splitPort(expected), splitPort(actual));
     }
 
     public List<Delta> pathDeltas() {
-        return (List) DiffUtils.diff(splitPath(expected), splitPath(actual)).getDeltas();
+        return diffDeltas(splitPath(expected), splitPath(actual));
     }
-
 
     public List<Delta> queryDeltas() {
-        return (List) DiffUtils.diff(splitQuery(expected), splitQuery(actual)).getDeltas();
+        return diffDeltas(splitQuery(expected), splitQuery(actual));
+    }
+
+    public List<Delta> fragmentDeltas() {
+        return diffDeltas(splitFragment(expected), splitFragment(actual));
     }
 
 
-    public List<Delta> fragmentDeltas() {
-        return (List) DiffUtils.diff(splitFragment(expected), splitFragment(actual)).getDeltas();
+    @SuppressWarnings("unchecked")
+    private List<Delta> diffDeltas(List<String> original, List<String> revised) {
+        return (List) DiffUtils.diff(original, revised).getDeltas();
     }
 
 }
