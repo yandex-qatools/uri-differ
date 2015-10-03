@@ -1,5 +1,6 @@
 package ru.lanwen.diff.uri;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import ru.lanwen.diff.uri.core.UriDiff;
 
@@ -20,6 +21,11 @@ public class UriDiffTest {
     public static final String URL_EXP = "http://disk.yandex.com.tr/?auth=1&retpath=http%3A%2F%2Fmail.yandex.com.tr%2Fneo2%2F%23disk&auth=2";
 
     @Test
+    public void defaultValue() {
+        assertThat(UriDiffer.DEFAULT_URI, equalTo(URI.create("/")));
+    }
+
+    @Test
     public void construction() throws Exception {
         String uri = "http://ya.ru";
         UriDiffer differ = UriDiffer.diff().actual(uri).expected(uri);
@@ -30,6 +36,16 @@ public class UriDiffTest {
         assertThat(diff.getRevised(), equalTo(URI.create(uri)));
         assertThat(diff.toString(), not(isEmptyOrNullString()));
         assertThat(diff.report(), not(isEmptyOrNullString()));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructionBadActual() throws Exception {
+        UriDiffer.diff().actual(StringUtils.SPACE);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructionBadExpected() throws Exception {
+        UriDiffer.diff().expected(StringUtils.SPACE);
     }
 
     @Test

@@ -8,9 +8,6 @@ import ru.lanwen.diff.uri.core.filters.UriDiffFilter;
 import ru.lanwen.diff.uri.core.view.DefaultUrlDiffView;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
 import static ru.lanwen.diff.uri.UriDiffer.diff;
@@ -23,7 +20,7 @@ public class ViewCompareMatcher extends TypeSafeDiagnosingMatcher<URI> {
     private URI expectedUri;
     private String expectedReport = "";
 
-    private List<UriDiffFilter> filters = new ArrayList<>();
+    private UriDiffFilter[] filters = {};
 
     public ViewCompareMatcher(URI expectedUri) {
         this.expectedUri = expectedUri;
@@ -35,7 +32,7 @@ public class ViewCompareMatcher extends TypeSafeDiagnosingMatcher<URI> {
     }
 
     public ViewCompareMatcher filtered(UriDiffFilter... filters) {
-        this.filters.addAll(Arrays.asList(filters));
+        this.filters = filters;
         return this;
     }
 
