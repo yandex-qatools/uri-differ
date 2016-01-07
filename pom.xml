@@ -23,9 +23,9 @@
     </properties>
 
     <scm>
-        <url>git@github.com:lanwen/uri-differ.git</url>
-        <connection>scm:git:git@github.com:lanwen/uri-differ.git</connection>
-        <developerConnection>scm:git:git@github.com:lanwen/uri-differ.git</developerConnection>
+        <url>git@github.com:yandex-qatools/uri-differ.git</url>
+        <connection>scm:git:git@github.com:yandex-qatools/uri-differ.git</connection>
+        <developerConnection>scm:git:git@github.com:yandex-qatools/uri-differ.git</developerConnection>
     </scm>
 
 
