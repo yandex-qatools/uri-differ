@@ -52,6 +52,7 @@ What it returns:
 | `http://yandex.com`        | `http://yandex.com.tr` | `http://yandex.com.[+tr]`      |  
 | `http://yandex.com.tr`     | `http://yandex.com`    | `http://yandex.com.[-tr]`      |  
 | `http://yandex.com.tr.fr`  | `http://yandex.com`    | `http://yandex.com.[-tr.fr]`   |  
+| `/path?q=1`                | `/changed?q=2`         | `/[path->changed]?[q=1->q=2]`  |  
 
 ##Use filters:
 

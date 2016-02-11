@@ -22,7 +22,7 @@ import static ru.lanwen.diff.uri.core.UriPart.PATH;
 import static ru.lanwen.diff.uri.core.UriPart.PORT;
 import static ru.lanwen.diff.uri.core.UriPart.QUERY;
 import static ru.lanwen.diff.uri.core.UriPart.SCHEME;
-import static ru.lanwen.diff.uri.core.util.Decoder.decode;
+import static ru.lanwen.diff.uri.core.util.URLCoder.decode;
 
 /**
  * User: lanwen

@@ -58,6 +58,7 @@ public class UriDiffOutputTest {
         data.add(new Object[]{"http://ya.ru/?q=1#123neo", "http://ya.ru/?q=1#neo", "http://ya.ru/?q=1#[-123]neo"});
         data.add(new Object[]{"http://ya.ru/?q=1#noo", "http://ya.ru/?q=1#neo", "http://ya.ru/?q=1#n[+e]o[-o]"});
         data.add(new Object[]{"http://ya.ru/?q=1#n00oo", "http://ya.ru/?q=1#neo", "http://ya.ru/?q=1#n[00->e]oo[-o]"});
+        data.add(new Object[]{"/path?q=1", "/changed?q=2", "/[path->changed]?[q=1->q=2]"});
         data.add(new Object[]{UriDiffTest.URL_EXP, UriDiffTest.URL_ACT,
                 "http://disk.yandex.com.tr/?[auth=1->auth=1?retpath=http://mail.yandex.com.tr/neo2/#disk]&auth=2&[-retpath=http://mail.yandex.com.tr/neo2/#disk]"});
         return data;

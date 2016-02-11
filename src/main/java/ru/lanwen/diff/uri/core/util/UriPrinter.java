@@ -72,12 +72,12 @@ public class UriPrinter {
 //                    sb.append("//");
 //                    sb.append(authority);
 //                }
-            if (path != null)
-                sb.append(path);
-            if (query != null) {
-                sb.append('?');
-                sb.append(query);
-            }
+        }
+        if (path != null)
+            sb.append(path);
+        if (query != null) {
+            sb.append('?');
+            sb.append(query);
         }
         if (fragment != null) {
             sb.append('#');

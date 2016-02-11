@@ -136,7 +136,7 @@ public class UriDiffTest {
         UriDiffer differ = UriDiffer.diff().actual(actual).expected(expected);
         UriDiff diff = differ.changes();
 
-        assertThat(differ.fragmentDeltas().size(), equalTo(1));
+        assertThat(differ.fragmentDeltas(), hasSize(1));
         assertThat(diff.hasChanges(), equalTo(Boolean.TRUE));
         assertThat(diff, changes(hasSize(1)));
         assertThat(diff, changes(hasItem(changeType(equalTo(FRAGMENT)))));
