@@ -13,6 +13,7 @@ import static java.lang.String.format;
 import static java.util.Arrays.asList;
 import static jersey.repackaged.com.google.common.base.Joiner.on;
 import static ru.lanwen.diff.uri.core.Delimiters.QUERY_NAME_VALUE_SEPARATOR;
+import static ru.lanwen.diff.uri.core.util.URLCoder.encode;
 
 /**
  * User: lanwen
@@ -68,7 +69,7 @@ public class AnyParamValueFilter implements UriDiffFilter {
         List<String> pairs = new ArrayList<>();
         for (String key : params.keySet()) {
             for (String value : params.get(key)) {
-                pairs.add(on(QUERY_NAME_VALUE_SEPARATOR).join(asList(key, value)));
+                pairs.add(on(QUERY_NAME_VALUE_SEPARATOR).join(asList(key, encode(value))));
             }
         }
         return on(UriPart.QUERY.getJoiner()).join(pairs);

@@ -5,9 +5,9 @@ import org.junit.Test;
 import java.net.URI;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static ru.lanwen.diff.uri.matchers.ViewCompareMatcher.comparingTo;
 import static ru.lanwen.diff.uri.core.filters.AnyParamValueFilter.param;
 import static ru.lanwen.diff.uri.core.filters.SchemeFilter.scheme;
+import static ru.lanwen.diff.uri.matchers.ViewCompareMatcher.comparingTo;
 
 /**
  * User: lanwen
