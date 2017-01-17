@@ -23,7 +23,7 @@ public enum UriPart {
     private String splitter;
     private String joiner;
 
-    private UriPart(String splitter, String joiner) {
+    UriPart(String splitter, String joiner) {
         this.splitter = splitter;
         this.joiner = joiner;
     }

@@ -1,15 +1,16 @@
 package ru.lanwen.diff.uri.core.converters;
 
-import ch.lambdaj.function.convert.Converter;
 import difflib.Delta;
 import ru.lanwen.diff.uri.core.formatted.FormattedDelta;
+
+import java.util.function.Function;
 
 import static jersey.repackaged.com.google.common.base.Joiner.on;
 
 /**
  * User: lanwen
  */
-public class DeltaFormatter implements Converter<Delta, FormattedDelta> {
+public class DeltaFormatter implements Function<Delta, FormattedDelta> {
     public static DeltaFormatter formatDeltas(String delimiter) {
         return new DeltaFormatter(delimiter);
     }
@@ -25,10 +26,9 @@ public class DeltaFormatter implements Converter<Delta, FormattedDelta> {
     public static final String CHANGE_PATTERN = "[%s->%s]";
 
     @Override
-    public FormattedDelta convert(Delta from) {
+    public FormattedDelta apply(Delta from) {
         String original = on(delimiter).join(from.getOriginal().getLines());
         String revised = on(delimiter).join(from.getRevised().getLines());
-
 
         return new FormattedDelta(
                 wrap(from.getType(), original, revised),

@@ -20,7 +20,7 @@ public class QueryWithEncodedURLTest {
         
         UriDiffer differ = UriDiffer.diff().actual(actual).expected(expected);
         assertThat(differ.queryDeltas(), hasSize(1));
-        assertThat((String) differ.queryDeltas().get(0).getRevised().getLines().get(0), equalTo("text=m&m's"));
+        assertThat(differ.queryDeltas().get(0).getRevised().getLines().get(0), equalTo("text=m&m's"));
     }
 
     @Test
@@ -30,6 +30,6 @@ public class QueryWithEncodedURLTest {
 
         assertThat(differ.changes(), changes(hasSize(1)));
         assertThat(differ.queryDeltas(), hasSize(1));
-        assertThat((String) differ.queryDeltas().get(0).getRevised().getLines().get(0), equalTo("y={\""));
+        assertThat(differ.queryDeltas().get(0).getRevised().getLines().get(0), equalTo("y={\""));
     }
 }

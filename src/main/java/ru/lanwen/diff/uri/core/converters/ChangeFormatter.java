@@ -1,22 +1,20 @@
 package ru.lanwen.diff.uri.core.converters;
 
-import ch.lambdaj.collection.LambdaList;
-import ch.lambdaj.function.convert.Converter;
 import ru.lanwen.diff.uri.core.Change;
 import ru.lanwen.diff.uri.core.formatted.FormattedChange;
 import ru.lanwen.diff.uri.core.formatted.FormattedDelta;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
-import static ch.lambdaj.collection.LambdaCollections.with;
-import static jersey.repackaged.com.google.common.base.Joiner.on;
+import static java.util.stream.Collectors.joining;
 import static ru.lanwen.diff.uri.core.converters.DeltaFormatter.formatDeltas;
 
 /**
  * User: lanwen
  */
-public class ChangeFormatter implements Converter<Change, FormattedChange> {
+public class ChangeFormatter implements Function<Change, FormattedChange> {
 
     public static ChangeFormatter formatChanges() {
         return new ChangeFormatter();
@@ -28,15 +26,18 @@ public class ChangeFormatter implements Converter<Change, FormattedChange> {
     private int inserted = 0;
 
     @Override
-    public FormattedChange convert(Change change) {
-        List<String> splitted = new ArrayList<String>(change.getOriginal());
+    public FormattedChange apply(Change change) {
+        List<String> splitted = new ArrayList<>(change.getOriginal());
 
-        LambdaList<FormattedDelta> formattedDeltas =
-                with(change.getDeltas()).convert(formatDeltas(change.getType().getJoiner()));
-        for (FormattedDelta formattedDelta : formattedDeltas) {
-            apply(formattedDelta, splitted);
-        }
-        return new FormattedChange(on(change.getType().getJoiner()).join(splitted), change.getType());
+        change.getDeltas()
+                .stream()
+                .map(formatDeltas(change.getType().getJoiner()))
+                .forEach(delta -> apply(delta, splitted));
+
+        return new FormattedChange(
+                splitted.stream().collect(joining(change.getType().getJoiner())),
+                change.getType()
+        );
     }
 
     private List<String> apply(FormattedDelta delta, List<String> splitted) {

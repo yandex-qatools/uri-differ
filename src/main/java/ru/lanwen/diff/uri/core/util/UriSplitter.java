@@ -1,20 +1,18 @@
 package ru.lanwen.diff.uri.core.util;
 
-import ch.lambdaj.collection.LambdaList;
 import org.apache.commons.lang3.StringUtils;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import static ch.lambdaj.collection.LambdaCollections.with;
 import static java.lang.String.valueOf;
 import static java.util.Collections.sort;
-import static org.apache.commons.lang3.StringUtils.defaultIfEmpty;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.isIn;
+import static java.util.stream.Collectors.toList;
+import static org.apache.commons.lang3.StringUtils.trimToEmpty;
 import static ru.lanwen.diff.uri.core.Delimiters.QUERY_NAME_VALUE_SEPARATOR;
 import static ru.lanwen.diff.uri.core.UriPart.FRAGMENT;
 import static ru.lanwen.diff.uri.core.UriPart.HOST;
@@ -62,7 +60,7 @@ public class UriSplitter {
 
 
     public static List<String> splitBy(String regex, String what) {
-        return with(defaultIfEmpty(what, "").split(regex)).remove(equalTo(""));
+        return Arrays.stream(trimToEmpty(what).split(regex)).filter(StringUtils::isNotBlank).collect(toList());
     }
 
 
@@ -86,10 +84,13 @@ public class UriSplitter {
     }
 
     public static void removeValues(Map<String, List<String>> map, String name, List<String> values) {
-        if (map.containsKey(name)) {
-            LambdaList<String> cleared = with(map.get(name)).clone().remove(isIn(values));
-            map.put(name, cleared);
-        }
+        map.computeIfPresent(
+                name,
+                (key, list) -> list
+                        .stream()
+                        .filter(value -> !values.contains(value))
+                        .collect(toList())
+        );
     }
 
 }
