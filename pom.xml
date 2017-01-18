@@ -10,7 +10,7 @@
 
     <groupId>ru.lanwen.diff</groupId>
     <artifactId>uri-differ-lib</artifactId>
-    <version>1.3-SNAPSHOT</version>
+    <version>1.3.0</version>
 
     <packaging>jar</packaging>
 
