@@ -1,8 +1,8 @@
 URI Differ
 ===========
 
-[![release](http://github-release-version.herokuapp.com/github/yandex-qatools/uri-differ/release.png?style=flat)](https://github.com/yandex-qatools/uri-differ/releases/latest)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/ru.lanwen.diff/uri-differ-lib/badge.png?style=flat)](https://maven-badges.herokuapp.com/maven-central/ru.lanwen.diff/uri-differ-lib)
+[![release](http://github-release-version.herokuapp.com/github/yandex-qatools/uri-differ/release.svg?style=flat)](https://github.com/yandex-qatools/uri-differ/releases/latest)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/ru.lanwen.diff/uri-differ-lib/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/ru.lanwen.diff/uri-differ-lib)
 
 
 Simple lib to find diffs between URI and represent it in pretty way.
