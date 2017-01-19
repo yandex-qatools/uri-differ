@@ -14,7 +14,7 @@ Simple lib to find diffs between URI and represent it in pretty way.
 <dependency>
     <groupId>ru.lanwen.diff</groupId>
     <artifactId>uri-differ-lib</artifactId>
-    <version>1.2</version>
+    <version>1.3.0</version>
 </dependency>
 ```  
 
